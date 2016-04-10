@@ -14,11 +14,10 @@ class PrimeClass(object):
         """
         is_p = True
 
-        if num_int >= 0 and num_int <= 2:
-            return is_p
-        else:
-            for x in range(2, num_int-1):
-                if num_int % x == 0:
-                    is_p = False
-                    break
+        for iterator in xrange(2, num_int-1):
+            if num_int % iterator == 0:
+                is_p = False
+                break
+        if num_int < 2:
+            is_p = False
         return is_p

@@ -13,7 +13,7 @@ class CalculatorClass(object):
         Your method documentation here
         """
         # your sum code here
-        sum = 0
-        for x in num_list:
-            sum += x
-        return sum
+        amount = 0
+        for iterator in num_list:
+            amount += iterator
+        return amount
