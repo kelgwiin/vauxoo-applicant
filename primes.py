@@ -1,5 +1,5 @@
 """
-Your module documentation here
+Your module documentation here by  kelgwiin
 """
 
 
@@ -12,5 +12,14 @@ class PrimeClass(object):
         """
         Your method documentation here
         """
-        # your primes code here
-        return "not implement yet"  # Remove this dummy line
+        is_p = True
+
+        if num_int >= 0 and num_int <= 2:
+        	return is_p
+        else:
+        	for x in range(2, num_int-1):
+        		if num_int % x == 0:
+        			is_p = False
+        			break
+		
+	return is_p        
