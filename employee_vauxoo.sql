@@ -11,22 +11,24 @@ CREATE TABLE employee_department (
 );
 
 CREATE TABLE employee (
-	id serial NOT NULL,
- 	last_name character varying(200),
- 	employee_department_id integer,
-	first_name character varying(200),
-  is_boss boolean NOT NULL DEFAULT false,
-  employee_boss_id integer,
+		id serial NOT NULL,
+	 	last_name character varying(200),
+	 	employee_department_id integer,
+		first_name character varying(200),
+	  
+	  employee_boss_id integer,
 
-	CONSTRAINT pk_employee PRIMARY KEY (id),
+		CONSTRAINT pk_employee PRIMARY KEY (id),
 
-  CONSTRAINT fk_boss_r FOREIGN KEY (employee_boss_id)
-      REFERENCES employee (id) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE,
+	  CONSTRAINT fk_boss_r FOREIGN KEY (employee_boss_id)
+	      REFERENCES employee (id) MATCH SIMPLE
+	      ON UPDATE CASCADE ON DELETE CASCADE,
 
-	CONSTRAINT fk_department_id FOREIGN KEY (employee_department_id)
-      REFERENCES employee_department (id) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE
+		CONSTRAINT fk_department_id FOREIGN KEY (employee_department_id)
+	      REFERENCES employee_department (id) MATCH SIMPLE
+	      ON UPDATE CASCADE ON DELETE CASCADE
+
+  
 );
 -- data
 -- departments
@@ -42,12 +44,12 @@ INSERT INTO employee_department(
 ;
 -- employees
 INSERT INTO employee(
-            id, last_name, employee_department_id, first_name)
+            id, last_name, first_name)
     VALUES
-    (1, 'Apellido 1', 1, 'Nombre 1'),
-    (2, 'Apellido 2', 1, 'Nombre 2'),
-    (3, 'Apellido 3', 2, 'Nombre 3'),
-    (4, 'Apellido 4', 3, 'Nombre 4')
+    (1, 'Apellido 1',  'Nombre 1'),
+    (2, 'Apellido 2',  'Nombre 2'),
+    (3, 'Apellido 3',  'Nombre 3'),
+    (4, 'Apellido 4',  'Nombre 4')
 
     ;
 CREATE TABLE employee_hobby (
@@ -95,10 +97,3 @@ VALUES
 
 -- bosses
 -- the employ 1 is the boss 
-UPDATE employee
-   SET is_boss=true
- WHERE id = 1;
-
-UPDATE employee
-   SET employee_boss_id=1
- WHERE id in(2,3,4);
