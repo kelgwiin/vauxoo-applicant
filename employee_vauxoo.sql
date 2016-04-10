@@ -15,7 +15,15 @@ CREATE TABLE employee (
  	last_name character varying(200),
  	employee_department_id integer,
 	first_name character varying(200),
+  is_boss boolean NOT NULL DEFAULT false,
+  employee_boss_id integer,
+
 	CONSTRAINT pk_employee PRIMARY KEY (id),
+
+  CONSTRAINT fk_boss_r FOREIGN KEY (employee_boss_id)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+
 	CONSTRAINT fk_department_id FOREIGN KEY (employee_department_id)
       REFERENCES employee_department (id) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
@@ -85,3 +93,12 @@ VALUES
 (3, 4 )
 ;
 
+-- bosses
+-- the employ 1 is the boss 
+UPDATE employee
+   SET is_boss=true
+ WHERE id = 1;
+
+UPDATE employee
+   SET employee_boss_id=1
+ WHERE id in(2,3,4);
