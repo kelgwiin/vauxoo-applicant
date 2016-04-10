@@ -42,9 +42,46 @@ INSERT INTO employee(
     (4, 'Apellido 4', 3, 'Nombre 4')
 
     ;
-
-
 CREATE TABLE employee_hobby (
+		id serial NOT NULL,
+	 	name character varying(200) NOT NULL,
+		description character varying(200) NOT NULL,
+		CONSTRAINT pk_employee_hobby PRIMARY KEY (id)
 );
 
--- ...
+CREATE TABLE employee_has_hobby(
+	hobby_id integer NOT NULL,
+  employee_id integer NOT NULL,
+  CONSTRAINT pk_employ_has_hobby PRIMARY KEY (hobby_id, employee_id),
+  CONSTRAINT fk_employee_has FOREIGN KEY (employee_id)
+      REFERENCES employee (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT fk_hobby_has FOREIGN KEY (hobby_id)
+      REFERENCES employee_hobby (id) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- data hobby
+INSERT INTO employee_hobby(
+            id, name, description)
+    VALUES 
+    (1, 'Hobby 1', 'Descripcion 1'),
+    (2, 'Hobby 2', 'Descripcion 2'),
+    (3, 'Hobby 3', 'Descripcion 3')
+;
+
+-- relationship hobbies
+INSERT INTO employee_has_hobby(
+            hobby_id, employee_id)
+VALUES 
+(1, 1 ),
+(1, 2 ),
+(1, 3 ),
+(1, 4 ),
+
+(2, 1 ),
+(2, 2 ),
+(3, 3 ),
+(3, 4 )
+;
+
