@@ -15,6 +15,5 @@ class CalculatorClass(object):
         # your sum code here
         sum = 0
         for x in num_list:
-        	sum += x
-	
-	return sum
+            sum += x
+        return sum
